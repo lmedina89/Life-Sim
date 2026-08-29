@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<title>Life Sim v0.5</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+<header class="topbar">
+  <div><h1>Life Sim</h1><p>v0.5 • Birth to legacy</p></div>
+  <button id="ageBtn" class="primary">Age +1 Year</button>
+</header>
+<section class="summary-grid">
+  <div><span>Age</span><strong id="ageVal">0</strong></div>
+  <div><span>Stage</span><strong id="stageVal">Baby</strong></div>
+  <div><span>Cash</span><strong id="cashVal">$0</strong></div>
+  <div><span>Net Worth</span><strong id="worthVal">$0</strong></div>
+</section>
+<nav class="tabs">
+  <button class="tab active" data-tab="life">Life</button>
+  <button class="tab" data-tab="school">School</button>
+  <button class="tab" data-tab="career">Career</button>
+  <button class="tab" data-tab="money">Money</button>
+  <button class="tab" data-tab="family">Family</button>
+  <button class="tab" data-tab="activities">Activities</button>
+</nav>
+
+<section class="panel active" data-panel="life">
+  <div class="card">
+    <h2>Character</h2>
+    <div class="grid2"><label>Name<input id="nameInput" placeholder="Your name"></label><label>Gender<select id="genderInput"><option>Male</option><option>Female</option><option>Nonbinary</option></select></label><label>Birthplace<select id="birthplaceInput"></select></label><label>Background<select id="backgroundInput"></select></label></div>
+    <button id="newLifeBtn">Start New Life</button><p id="characterMessage" class="muted"></p>
+  </div>
+  <div class="card"><h2>Core Stats</h2><div id="statsGrid" class="stat-grid"></div></div>
+  <div class="card"><h2>Life Log</h2><div id="log" class="log"></div></div>
+</section>
+
+<section class="panel" data-panel="school">
+  <div class="card"><h2>School</h2><div class="kv"><span>Level</span><strong id="schoolVal">—</strong><span>GPA</span><strong id="gpaVal">—</strong><span>Club / Sport</span><strong id="clubVal">None</strong></div>
+    <div class="button-grid"><button id="studySchoolBtn">Study for School</button><button id="joinTechBtn">Join Technology Club</button><button id="joinSportsBtn">Join Sports</button><button id="joinArtsBtn">Join Arts Club</button></div>
+    <p id="schoolMessage" class="muted"></p>
+  </div>
+  <div class="card"><h2>Higher Education</h2><div class="kv"><span>Education</span><strong id="eduVal">None</strong><span>Progress</span><strong id="eduProgress">—</strong></div>
+    <div class="button-grid"><button id="tradeBtn">Trade School</button><button id="collegeBtn">College</button><button id="gradBtn">Graduate School</button></div>
+  </div>
+</section>
+
+<section class="panel" data-panel="career">
+  <div class="card"><h2>Career</h2><div class="kv"><span>Job</span><strong id="jobVal">None</strong><span>Salary</span><strong id="salaryVal">$0</strong><span>Performance</span><strong id="performanceVal">0</strong></div>
+    <label>Available Jobs<select id="jobSelect"></select></label>
+    <div class="button-grid"><button id="applyBtn">Apply</button><button id="workBtn">Work Harder</button><button id="promotionBtn">Ask for Promotion</button><button id="quitBtn">Quit Job</button></div><p id="careerMessage" class="muted"></p>
+  </div>
+</section>
+
+<section class="panel" data-panel="money">
+  <div class="card"><h2>Banking</h2><div class="kv"><span>Checking</span><strong id="cash2Val">$0</strong><span>Savings</span><strong id="savingsVal">$0</strong><span>Debt</span><strong id="debtVal">$0</strong><span>Credit</span><strong id="creditVal">—</strong><span>Investments</span><strong id="investVal">$0</strong><span>Annual Expenses</span><strong id="expensesVal">$0</strong></div>
+    <div class="button-grid"><button id="saveMoneyBtn">Move $500 to Savings</button><button id="withdrawSavingsBtn">Withdraw $500</button><button id="loanBtn">Borrow $5,000</button><button id="payDebtBtn">Pay $1,000 Debt</button><button id="investBtn">Invest $1,000</button><button id="bankruptcyBtn">Declare Bankruptcy</button></div><p id="financeMessage" class="muted"></p>
+  </div>
+  <div class="card"><h2>Assets</h2><p id="assetsVal">No major assets.</p><div id="assetButtons" class="button-grid"></div><p id="assetMessage" class="muted"></p></div>
+  <div class="card"><h2>Business</h2><div class="kv"><span>Business</span><strong id="businessVal">None</strong><span>Income</span><strong id="businessIncomeVal">$0</strong></div><div class="button-grid"><button id="startBusinessBtn">Start Business ($10k)</button><button id="upgradeBusinessBtn">Upgrade Business ($10k)</button></div><p id="businessMessage" class="muted"></p></div>
+</section>
+
+<section class="panel" data-panel="family">
+  <div class="card"><h2>Relationships</h2><div class="kv"><span>Status</span><strong id="relationshipVal">Single</strong><span>Quality</span><strong id="relationshipQuality">—</strong></div><div class="button-grid"><button id="dateBtn">Find a Date</button><button id="partnerTimeBtn">Spend Time Together</button><button id="marryBtn">Get Married</button><button id="breakupBtn">Break Up / Divorce</button><button id="childBtn">Try for Child</button></div><p id="relationshipMessage" class="muted"></p></div>
+  <div class="card"><h2>Family</h2><div id="familyList"></div><h3>Children</h3><div id="childrenList"></div><button id="familyTimeBtn">Spend Time With Family</button></div>
+  <div class="card"><h2>Friends</h2><div class="kv"><span>Close Friends</span><strong id="friendsVal">0</strong></div><button id="makeFriendBtn">Make a Friend</button></div>
+</section>
+
+<section class="panel" data-panel="activities">
+  <div class="card"><h2>Skills</h2><div id="skillsGrid" class="stat-grid"></div></div>
+  <div class="card"><h2>Activities</h2><div class="button-grid"><button id="studyBtn">Read / Learn</button><button id="exerciseBtn">Exercise</button><button id="socializeBtn">Socialize</button><button id="relaxBtn">Relax</button><button id="techBtn">Practice Technology</button><button id="mechanicalBtn">Practice Mechanical</button><button id="businessSkillBtn">Study Business</button><button id="creativeBtn">Practice Creativity</button><button id="crimeBtn">Commit Crime</button></div><p id="choiceMessage" class="muted"></p><p id="crimeMessage" class="muted"></p></div>
+  <div class="card"><h2>Achievements</h2><div id="achievementsVal" class="chips"></div></div>
+  <div class="card"><h2>Save</h2><p>Autosave: <strong id="autosaveStatus">Saved</strong></p><div class="button-grid"><button id="manualSaveBtn">Save Now</button><button id="exportBtn">Export</button><button id="importBtn">Import</button><button id="resetBtn">Reset</button></div><textarea id="saveBox" rows="7"></textarea><p id="saveMessage" class="muted"></p></div>
+</section>
+</div>
+
+<div id="eventOverlay" class="overlay hidden"><div class="modal"><h2 id="eventTitle"></h2><p id="eventText"></p><div id="eventChoices" class="choice-list"></div></div></div>
+<div id="deathOverlay" class="overlay hidden"><div class="modal"><h2>Life Complete</h2><div id="deathSummary"></div><button id="restartAfterDeathBtn" class="primary">Start Another Life</button></div></div>
+<script src="gameData.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
