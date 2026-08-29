@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111827">
+  <title>Life Sim v0.4</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <h1>Life Sim</h1>
+        <p id="subtitle">v0.4 • Birth to legacy</p>
+      </div>
+      <button id="ageBtn" class="primary">Age +1 Year</button>
+    </header>
+
+    <section class="summary-grid" aria-label="Character summary">
+      <div class="card mini"><span>Age</span><strong id="ageVal">0</strong></div>
+      <div class="card mini"><span>Cash</span><strong id="cashVal">$0</strong></div>
+      <div class="card mini"><span>Net Worth</span><strong id="worthVal">$0</strong></div>
+      <div class="card mini"><span>Stage</span><strong id="stageVal">Baby</strong></div>
+    </section>
+
+    <nav class="tabs" aria-label="Game sections">
+      <button class="tab active" data-tab="life">Life</button>
+      <button class="tab" data-tab="career">Career</button>
+      <button class="tab" data-tab="money">Money</button>
+      <button class="tab" data-tab="family">Family</button>
+      <button class="tab" data-tab="activities">Activities</button>
+    </nav>
+
+    <main>
+      <section class="panel active" data-panel="life">
+        <div class="card">
+          <div class="section-head"><h2>Character Stats</h2><span id="autosaveStatus" class="muted">Autosave ready</span></div>
+          <div class="stats-grid">
+            <div>❤️ Health <strong id="healthVal">100</strong></div>
+            <div>😄 Happiness <strong id="happyVal">70</strong></div>
+            <div>🧠 Intelligence <strong id="intVal">50</strong></div>
+            <div>✨ Looks <strong id="looksVal">50</strong></div>
+            <div>💪 Fitness <strong id="fitVal">50</strong></div>
+            <div>🗣️ Social <strong id="socialVal">50</strong></div>
+            <div>😰 Stress <strong id="stressVal">10</strong></div>
+            <div>⚖️ Karma <strong id="karmaVal">50</strong></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Life Log</h2>
+          <div id="log" class="log" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="career">
+        <div class="card">
+          <h2>Education</h2>
+          <p>Status: <strong id="eduVal">None</strong></p>
+          <p>Program: <strong id="eduProgress">—</strong></p>
+          <div class="actions">
+            <button id="collegeBtn">Start College</button>
+            <button id="tradeBtn">Start Trade School</button>
+            <button id="gradBtn">Start Graduate School</button>
+          </div>
+          <p id="eduMessage" class="muted"></p>
+        </div>
+
+        <div class="card">
+          <h2>Career</h2>
+          <p>Current job: <strong id="jobVal">None</strong></p>
+          <p>Salary: <strong id="salaryVal">$0</strong> • Performance: <strong id="performanceVal">0</strong></p>
+          <select id="jobSelect"></select>
+          <div class="actions">
+            <button id="applyBtn" class="primary">Apply</button>
+            <button id="workBtn">Work Harder</button>
+            <button id="promotionBtn">Ask for Promotion</button>
+          </div>
+          <p id="careerMessage" class="muted"></p>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="money">
+        <div class="card">
+          <h2>Finances</h2>
+          <div class="stats-grid">
+            <div>Debt <strong id="debtVal">$0</strong></div>
+            <div>Investments <strong id="investVal">$0</strong></div>
+            <div>Credit <strong id="creditVal">—</strong></div>
+            <div>Annual Expenses <strong id="expensesVal">$0</strong></div>
+          </div>
+          <div class="actions">
+            <button id="loanBtn">Borrow $5k</button>
+            <button id="investBtn">Invest $1k</button>
+            <button id="payDebtBtn">Pay $1k Debt</button>
+          </div>
+          <p id="financeMessage" class="muted"></p>
+        </div>
+
+        <div class="card">
+          <h2>Assets</h2>
+          <p id="assetsVal" class="muted">No major assets.</p>
+          <div class="asset-grid">
+            <button data-asset="usedcar">Used Car <small>$8k cash</small></button>
+            <button data-asset="newcar">New Car <small>$35k / finance</small></button>
+            <button data-asset="condo">Condo <small>$120k / mortgage</small></button>
+            <button data-asset="house">House <small>$280k / mortgage</small></button>
+          </div>
+          <p id="assetMessage" class="muted"></p>
+        </div>
+
+        <div class="card">
+          <h2>Business</h2>
+          <p>Business: <strong id="businessVal">None</strong></p>
+          <p>Annual profit: <strong id="businessIncomeVal">$0</strong></p>
+          <div class="actions">
+            <button id="startBusinessBtn">Start Business $10k</button>
+            <button id="upgradeBusinessBtn">Upgrade $10k</button>
+          </div>
+          <p id="businessMessage" class="muted"></p>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="family">
+        <div class="card">
+          <h2>Parents & Siblings</h2>
+          <div id="familyList"></div>
+        </div>
+
+        <div class="card">
+          <h2>Romance</h2>
+          <p>Status: <strong id="relationshipVal">Single</strong></p>
+          <p>Relationship quality: <strong id="relationshipQuality">—</strong></p>
+          <div class="actions">
+            <button id="dateBtn">Find Date</button>
+            <button id="partnerTimeBtn">Spend Time Together</button>
+            <button id="marryBtn">Propose</button>
+            <button id="childBtn">Try for Child</button>
+          </div>
+          <p id="relationshipMessage" class="muted"></p>
+        </div>
+
+        <div class="card">
+          <h2>Children</h2>
+          <div id="childrenList" class="muted">No children.</div>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="activities">
+        <div class="card">
+          <h2>Activities</h2>
+          <div class="activity-grid">
+            <button id="studyBtn">Study</button>
+            <button id="exerciseBtn">Exercise</button>
+            <button id="socializeBtn">Socialize</button>
+            <button id="relaxBtn">Relax</button>
+            <button id="familyTimeBtn">Spend Time With Family</button>
+            <button id="crimeBtn">Commit Petty Crime</button>
+          </div>
+          <p id="choiceMessage" class="muted"></p>
+          <p id="crimeMessage" class="muted"></p>
+        </div>
+
+        <div class="card">
+          <h2>Save & Reset</h2>
+          <p class="muted">The game autosaves in this browser after every meaningful action.</p>
+          <div class="actions">
+            <button id="manualSaveBtn">Save Now</button>
+            <button id="exportBtn">Export Save</button>
+            <button id="importBtn">Import Save</button>
+            <button id="resetBtn" class="danger">Restart Life</button>
+          </div>
+          <textarea id="saveBox" rows="5" placeholder="Exported save data appears here. Paste save data here before Import."></textarea>
+          <p id="saveMessage" class="muted"></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="eventOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="eventTitle">
+    <div class="event-card">
+      <span class="eyebrow">Life Event</span>
+      <h2 id="eventTitle">Event</h2>
+      <p id="eventText"></p>
+      <div id="eventChoices" class="event-choices"></div>
+    </div>
+  </div>
+
+  <script src="data/gameData.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
